@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: unless-stopped
+    ports:
+      - "8080:8080"      # Web-интерфейс
+      - "50000:50000"    # Для Jenkins агента
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock   # чтобы Jenkins мог управлять Docker
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"   # отключим мастер-установку (по желанию)
