@@ -3,6 +3,10 @@ package ru.pet;
 
 import org.slf4j.Logger;
 
+
+/**
+ * Делает простые мат операции
+ */
 public class Calculator {
 
     private final Logger logger;
