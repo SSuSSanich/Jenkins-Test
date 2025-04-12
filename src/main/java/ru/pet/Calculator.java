@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 public class Calculator {
 
     private final Logger logger;
-    
+
     public Calculator(Logger logger) {
         this.logger = logger;
     }
