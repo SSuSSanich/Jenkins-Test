@@ -26,6 +26,23 @@
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.32</version> <!-- Убедитесь, что используете последнюю версию -->
+        </dependency>
+        <!-- Logback Classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.6</version> <!-- Убедитесь, что используете последнюю версию -->
+        </dependency>
+            
+
+
+
     </dependencies>
 
 </project>
