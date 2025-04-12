@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 
 /**
  * Делает простые мат операции
+ * Он молодец
  */
 public class Calculator {
 
