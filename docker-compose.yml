@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   jenkins:
-    build: .
+    image: jenkins/jenkins:lts
     container_name: jenkins_with_maven_jdk17
     restart: unless-stopped
     ports:
@@ -13,6 +13,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock  # Чтобы Jenkins мог управлять Docker
     environment:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # Отключаем мастер-установку (по желанию)
-      MAVEN_HOME: "/usr/share/maven"
-      JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+
 
