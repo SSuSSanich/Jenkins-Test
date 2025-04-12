@@ -8,8 +8,6 @@ import ru.pet.dto.UserRequest;
 import ru.pet.dto.UserResponse;
 import ru.pet.service.UserService;
 
-import javax.validation.constraints.NotNull;
-
 @RestController
 @RequiredArgsConstructor
 public class UserController {
