@@ -1,30 +1,46 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9-eclipse-temurin-17'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace'
+        }
+    }
 
-    tools {
-        jdk 'JDK17'
-        maven 'Maven3'
+    environment {
+        COMPOSE_FILE = 'infra/docker-compose.yml'
     }
 
     stages {
-        stage('Build') {
+
+        stage('Build services') {
             steps {
-                sh 'mvn clean package -X -DskipTests'
+                sh 'mvn -B clean install -DskipTests'
             }
         }
-        stage('Unit Tests') {
+
+        stage('Start infrastructure') {
+            steps {
+                sh 'docker-compose -f $COMPOSE_FILE up -d'
+                sh 'sleep 10'  // немного подождать, пока сервисы поднимутся
+            }
+        }
+
+        stage('Run Unit Tests') {
             steps {
                 sh 'mvn test'
             }
         }
-    }
 
-    post {
-        success {
-            echo '✅ CI успешно прошёл'
+        stage('Run Integration Tests') {
+            steps {
+                sh 'mvn verify -Pintegration-tests'
+            }
         }
-        failure {
-            echo '❌ Ошибка в PR'
+
+        stage('Stop infrastructure') {
+            steps {
+                sh 'docker-compose -f $COMPOSE_FILE down'
+            }
         }
     }
 }
