@@ -3,6 +3,7 @@ package ru.pet;
 
 import org.slf4j.Logger;
 
+//не сможешь запушить дев
 public class Calculator {
 
     private final Logger logger;
