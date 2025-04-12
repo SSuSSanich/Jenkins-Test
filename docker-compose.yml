@@ -6,10 +6,13 @@ services:
     container_name: jenkins_with_maven_jdk17
     restart: unless-stopped
     ports:
-      - "8080:8080"      # Web-интерфейс
+      - "8080:8080"      # Web-интерфейс Jenkins
       - "50000:50000"    # Для Jenkins агента
     volumes:
-      - ./jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock   # чтобы Jenkins мог управлять Docker
+      - ./jenkins_home:/var/jenkins_home  # Хранение данных Jenkins
+      - /var/run/docker.sock:/var/run/docker.sock  # Чтобы Jenkins мог управлять Docker
     environment:
-      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"   # отключим мастер-установку (по желанию)
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # Отключаем мастер-установку (по желанию)
+      MAVEN_HOME: "/usr/share/maven"
+      JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"
+
