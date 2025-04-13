@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  users-service:
+    build:
+      context: .  # Указываем контекст сборки
+      dockerfile: ./user-service/Dockerfile  # Указываем имя Dockerfile (по умолчанию "Dockerfile")
+    ports:
+      - "8081:8080"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: jenkins
+      DB_USER: jenkins
+      DB_PASSWORD: 1234321
+      SPRING_PROFILES_ACTIVE: prod
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: jenkins
+      POSTGRES_PASSWORD: 1234321
+      POSTGRES_DB: jenkins
+    ports:
+      - "5432:5432"

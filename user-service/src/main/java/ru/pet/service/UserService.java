@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.pet.dto.UserRequest;
 import ru.pet.dto.UserResponse;
-import ru.pet.entity.User;
+import ru.pet.entity.Client;
 import ru.pet.mapper.UserMapper;
 import ru.pet.repository.UserRepository;
 
@@ -16,13 +16,13 @@ public class UserService {
     private final UserMapper mapper;
     
     public UserResponse createUser(UserRequest userRequest){
-        User user = mapper.toEntity(userRequest);
-        User newUser = userRepository.save(user);
-        return mapper.toUserResponse(newUser);
+        Client client = mapper.toEntity(userRequest);
+        Client newClient = userRepository.save(client);
+        return mapper.toUserResponse(newClient);
     }
     
     public UserResponse getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow();
-        return mapper.toUserResponse(user);
+        Client client = userRepository.findById(id).orElseThrow();
+        return mapper.toUserResponse(client);
     }
 }
