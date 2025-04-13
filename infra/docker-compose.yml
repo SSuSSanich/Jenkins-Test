@@ -3,7 +3,7 @@ version: '3.8'
 services:
   users-service:
     build:
-      context: .  # Указываем контекст сборки
+      context: ..  # Указываем контекст сборки
       dockerfile: ./user-service/Dockerfile  # Указываем имя Dockerfile (по умолчанию "Dockerfile")
     ports:
       - "8081:8080"
