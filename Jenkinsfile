@@ -1,9 +1,9 @@
 pipeline {
     agent {
-            docker {
-                        image 'alpine/docker:20.10.16'
-                        args '-v /var/run/docker.sock:/var/run/docker.sock'
-            }
+        docker {
+            image 'docker/compose:1.29.2'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
     }
 
     environment {

@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     container_name: jenkins_with_maven_jdk17
     restart: unless-stopped
     ports:
