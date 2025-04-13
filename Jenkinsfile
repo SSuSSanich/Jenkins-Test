@@ -7,11 +7,11 @@ pipeline {
 
     stages {
 
-        stage('Build services') {
-            steps {
-                sh 'mvn -B clean install -DskipTests'
-            }
-        }
+//         stage('Build services') {
+//             steps {
+//                 sh 'mvn -B clean install -DskipTests'
+//             }
+//         }
 
         stage('Start infrastructure') {
             steps {
